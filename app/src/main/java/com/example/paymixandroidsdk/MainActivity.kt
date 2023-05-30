@@ -14,6 +14,5 @@ class MainActivity : AppCompatActivity() {
         com.example.toasterjava.Toaster.simpleToast(this,str.toString())
 
 
-
     }
 }
