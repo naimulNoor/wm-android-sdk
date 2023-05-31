@@ -1,20 +1,18 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'com.walletmix.myapp'
+    namespace 'com.wallemix.paymix.opg'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.paymixandroidsdk"
         minSdk 21
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -37,11 +35,20 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.10.1'
     testImplementation 'junit:junit:4.13.2'
-    //add sdk module to the application
-    implementation project(path: ':paymix-opg')
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    // RETROFIT
+
+    // Retrofit
+    def retrofit_version = '2.9.0'
+    def retrofit_loggingInterceptor = '5.0.0-alpha.10'
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    annotationProcessor "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofit_loggingInterceptor"
 }
