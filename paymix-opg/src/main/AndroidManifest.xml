@@ -7,7 +7,7 @@
 
     <application>
         <activity
-            android:name="com.paymix.opg.CardSelectionActivity"
+            android:name="com.paymix.opg.old.apiclient.CardSelectionActivity"
             android:exported="true">
         </activity>
     </application>

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.paymix.opg.WalletmixOnlinePaymentGateway
+import com.paymix.opg.old.apiclient.WalletmixOnlinePaymentGateway
 import com.walletmix.myapp.R
 import org.json.JSONException
 import org.json.JSONObject
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 "wl"+(0..10000).random(),
                 "Naimul Hassan Noor",
                 "01733433672",
-                "naimul.roni@gmail.com",
+                "a@b.com",
                 "dhaka",
                 "dhaka",
                 "BD",
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 "www.naimulnoor.com",
                 "",
             )
-            walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java)
+            walletmixOnlinePGateway!!.startTransactions(true,MainActivity::class.java)
         }
 
 
