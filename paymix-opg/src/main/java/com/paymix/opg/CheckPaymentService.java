@@ -14,7 +14,6 @@ interface CheckPaymentService {
 
     @FormUrlEncoded
     @POST
-    Call<JsonElement> checkPayment(@Url String url,
-                                   @FieldMap Map<String, String> params);
+    Call<JsonElement> checkPayment(@Url String url, @FieldMap Map<String, String> params);
 
 }

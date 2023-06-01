@@ -17,8 +17,7 @@ interface InitPaymentApiService {
 
     @FormUrlEncoded
     @POST
-    Call<InitPaymentApiResponse> initPayment(@Url String url,
-                                             @FieldMap Map<String, String> params);
+    Call<InitPaymentApiResponse> initPayment(@Url String url, @FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST

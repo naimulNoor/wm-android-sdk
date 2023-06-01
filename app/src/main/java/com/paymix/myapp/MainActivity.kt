@@ -1,10 +1,13 @@
 package com.paymix.myapp
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.paymix.opg.WalletmixOnlinePaymentGateway
 import com.walletmix.myapp.R
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +58,35 @@ class MainActivity : AppCompatActivity() {
                 "",
             )
             walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java)
+        }
+
+
+        try {
+            val response = intent.getStringExtra("response")
+            val jsonObject: JSONObject
+            val responseTxnStatus: String
+            if (response != null) {
+                if (response == "false") {
+                    Log.d("payment-response", "Transaction was incomplete. Please try again to complete your transaction.")
+
+                } else {
+                    try {
+                        jsonObject = JSONObject(response)
+                        responseTxnStatus = jsonObject.getString("txn_status")
+                        when (responseTxnStatus) {
+                            "1000" -> Log.d("payment-response", "Your transaction was Success")
+
+                            "1001" -> Log.d("payment-response", "Your transaction was REJECTED")
+
+                            "1009" -> Log.d("payment-response", "Your Transaction was  CANCELLED.")
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
 

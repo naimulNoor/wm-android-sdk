@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 
 import com.wallemix.paymix.opg.R;
 
@@ -158,12 +159,8 @@ public class WalletmixOnlinePaymentGateway {
         retrofitHelperService.initPayment(initPaymentUrl, initPaymentParams, new RetrofitHelperService.InitPaymentApiCallListener() {
             @Override
             public void onSuccessfullyInitPayment(String token) {
-
-                retrofitHelperService.initToken(context, merchant_order_id, token, new RetrofitHelperService.InitTokenCallListener() {
-                    @Override
-                    public void onSuccessfullyInitToken() {
-                        if (progressDialog != null && progressDialog.isShowing())
-                            progressDialog.dismiss();
+                if (progressDialog != null && progressDialog.isShowing())
+                    progressDialog.dismiss();
                         String cardSelectionPageUrl = bank_payment_url + "/" + token;
                         Intent cardSelectionIntent = new Intent(context, CardSelectionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         Bundle dataBundle = new Bundle();
@@ -177,15 +174,36 @@ public class WalletmixOnlinePaymentGateway {
                         dataBundle.putString(Keys.call_back_activity_class_name.name(), callBackActivityClassName);
                         cardSelectionIntent.putExtra(Keys.data_bundle.name(), dataBundle);
                         context.startActivity(cardSelectionIntent);
-                    }
 
-                    @Override
-                    public void onFailedToInitToken(String failedMessage) {
-                        if (progressDialog != null && progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        AlertServices.showAlertDialog(context, null, failedMessage, "Okay", null, null);
-                    }
-                });
+                Log.d("init-payment-token",token);
+//
+//                retrofitHelperService.initToken(context, merchant_order_id, token, new RetrofitHelperService.InitTokenCallListener() {
+//                    @Override
+//                    public void onSuccessfullyInitToken() {
+//                        if (progressDialog != null && progressDialog.isShowing())
+//                            progressDialog.dismiss();
+//                        String cardSelectionPageUrl = bank_payment_url + "/" + token;
+//                        Intent cardSelectionIntent = new Intent(context, CardSelectionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        Bundle dataBundle = new Bundle();
+//                        dataBundle.putBoolean(Keys.is_live.name(), isLive);
+//                        dataBundle.putString(Keys.token.name(), token);
+//                        dataBundle.putString(Keys.card_selection_url.name(), cardSelectionPageUrl);
+//                        dataBundle.putString(Keys.call_back_url.name(), APIs.CALL_BACK_URL);
+//                        dataBundle.putString(Keys.wmx_id.name(), wmx_id);
+//                        dataBundle.putString(Keys.access_api_key.name(), access_app_key);
+//                        dataBundle.putString(Keys.authorization.name(), authorization);
+//                        dataBundle.putString(Keys.call_back_activity_class_name.name(), callBackActivityClassName);
+//                        cardSelectionIntent.putExtra(Keys.data_bundle.name(), dataBundle);
+//                        context.startActivity(cardSelectionIntent);
+//                    }
+//
+//                    @Override
+//                    public void onFailedToInitToken(String failedMessage) {
+//                        if (progressDialog != null && progressDialog.isShowing())
+//                            progressDialog.dismiss();
+//                        AlertServices.showAlertDialog(context, null, failedMessage, "Okay", null, null);
+//                    }
+//                });
             }
 
             @Override
