@@ -2,6 +2,7 @@ package com.paymix.opg;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -114,15 +115,29 @@ class RetrofitHelperService {
     }
 
     void initToken(Context context, String refId, String paymentToken, final InitTokenCallListener initTokenCallListener) {
-        String url = All_APIs.BASE_URL + All_APIs.SUB_DOMAIN + "/api" + All_APIs.API_VERSION + "/token-initialization";
+
+
+
+        //String url = All_APIs.BASE_URL + All_APIs.SUB_DOMAIN + "/api" + All_APIs.API_VERSION + "/token-initialization";
+
+
+
         SessionManager sessionManager = new SessionManager(context);
         String authorization = Headers.BEARER + sessionManager.getString(Key.access_token.name());
+        //String authorization =sessionManager.getString(Key.access_token.name());
 
+        //add bank process url
+        String url ="https://sandbox.walletmix.com/bank-payment-process/"+paymentToken;
         InitPaymentApiService initPaymentApiService = ServiceGenerator.createService(InitPaymentApiService.class);
-        Call<InitTokenResponse> initPaymentApiCall = initPaymentApiService.initToken(url, refId, paymentToken, authorization, "application/json");
+        Log.d("authtoken",authorization);
+        Log.d("authtoken",paymentToken);
+
+        //oke
+        Call<InitTokenResponse> initPaymentApiCall = initPaymentApiService.bankPaymentProcess(url);
         initPaymentApiCall.enqueue(new Callback<InitTokenResponse>() {
             @Override
             public void onResponse(@NonNull Call<InitTokenResponse> call, Response<InitTokenResponse> response) {
+                Log.d("","");
                 if (response.isSuccessful() && response.body() != null) {
                     InitTokenResponse result = response.body();
                     if (result.statusCode == 9090) {
