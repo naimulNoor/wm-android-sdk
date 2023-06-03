@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/img_loader"
-        android:padding="@dimen/mediumMargin"
+        android:padding="8dp"
         android:layout_width="203dp"
         android:layout_height="203dp"
         android:contentDescription="@null"/>

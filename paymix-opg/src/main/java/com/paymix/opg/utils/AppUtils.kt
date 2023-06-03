@@ -17,7 +17,6 @@ import android.os.Environment
 import android.os.SystemClock
 import android.provider.MediaStore
 import android.provider.Settings
-import android.support.compat.BuildConfig
 import android.telephony.SmsManager
 import android.text.Html
 import android.text.Spanned
@@ -30,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import com.squareup.picasso.BuildConfig
 import com.squareup.picasso.Picasso
 import com.wallemix.paymix.opg.R
 

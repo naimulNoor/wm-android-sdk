@@ -1,11 +1,11 @@
 package com.paymix.opg.di.module
 
 import android.content.Context
+import com.paymix.opg.data.network.ApiServiceBuilder
 import com.paymix.opg.data.network.RetrofitApiClient
 
 import com.paymix.opg.data.prefs.PreferenceManager
 import com.paymix.opg.utils.NetworkUtils
-import com.walletmix.paymixbusiness.data.network.ApiServiceBuilder
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

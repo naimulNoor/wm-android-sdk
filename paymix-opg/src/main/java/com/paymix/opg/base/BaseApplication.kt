@@ -3,15 +3,18 @@ package com.paymix.opg.base
 
 import android.app.Activity
 import android.app.Application
-import android.arch.lifecycle.ProcessLifecycleOwner
+//import android.arch.lifecycle.ProcessLifecycleOwner
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDex
 import com.squareup.okhttp.Credentials
 
 import com.paymix.opg.data.prefs.PrefKeys
 import com.paymix.opg.data.prefs.PreferenceManager
+//package com.paymix.opg.di.component.DaggerAppComponent
+import com.walletmix.paymixbusiness.service.sms_retriver.AppSignatureHashHelper
 
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

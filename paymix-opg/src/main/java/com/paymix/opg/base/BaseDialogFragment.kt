@@ -88,17 +88,17 @@ abstract class BaseDialogFragment : DialogFragment() {
         loader?.cancel()
     }
 
-    fun showErrorDialog(title: String? = null, message: String?, titleFullRed: Boolean = false) {
-        try{
-            val dialogError: DialogError = DialogError.newInstance(title, message, titleFullRed, animId = R.raw.failed)
-            fragmentManager?.let { fm ->
-                dialogError.show(fm, DialogError.TAG)
-            }
-        }catch (e:Exception){
-
-        }
-
-    }
+//    fun showErrorDialog(title: String? = null, message: String?, titleFullRed: Boolean = false) {
+//        try{
+//            val dialogError: DialogError = DialogError.newInstance(title, message, titleFullRed, animId = R.raw.failed)
+//            fragmentManager?.let { fm ->
+//                dialogError.show(fm, DialogError.TAG)
+//            }
+//        }catch (e:Exception){
+//
+//        }
+//
+//    }
 
     override fun onPause() {
         super.onPause()

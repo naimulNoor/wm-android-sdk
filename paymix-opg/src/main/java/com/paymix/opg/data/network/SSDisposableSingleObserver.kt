@@ -18,7 +18,7 @@ import java.util.LinkedHashMap
 import javax.net.ssl.SSLHandshakeException
 
 
-abstract class SSDisposableSingleObserver<R, out V : BaseContract.View>(private val mView: V?) : DisposableSingleObserver<R>() {
+abstract class SSDisposableSingleObserver<R : Any, out V : BaseContract.View>(private val mView: V?) : DisposableSingleObserver<R>() {
 
 
     abstract fun onRequestSuccess(response: R)
