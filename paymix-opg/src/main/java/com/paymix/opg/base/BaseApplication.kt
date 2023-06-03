@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDex
-import com.squareup.okhttp.Credentials
+
 
 import com.paymix.opg.data.prefs.PrefKeys
 import com.paymix.opg.data.prefs.PreferenceManager
@@ -18,13 +18,13 @@ import com.walletmix.paymixbusiness.service.sms_retriver.AppSignatureHashHelper
 
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class BaseApplication : Application(), HasActivityInjector, LifecycleObserver {
+class BaseApplication : Application(), HasAndroidInjector, LifecycleObserver {
 
 
     companion object {
@@ -43,11 +43,9 @@ class BaseApplication : Application(), HasActivityInjector, LifecycleObserver {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("lifecycle",islogindta.toString())
-        Log.d("MyApp", "App in first time")
         initDagger()
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-        genHexStringForSmsRetrieverAPI()
+
         loadAppLanguage()
 
         Timber.d("this is timber")
@@ -67,10 +65,10 @@ class BaseApplication : Application(), HasActivityInjector, LifecycleObserver {
         }
 
 
-    private fun genHexStringForSmsRetrieverAPI(){
+    private fun genHexStringForSmsRetrieverAPI() {
         val appSignatureHashHelper = AppSignatureHashHelper(this)
         mPrefManager.putString(PrefKeys.APP_SIGNING_KEY, appSignatureHashHelper.appSignatures[0])
-        Log.e(TAG, "SMSHashKey: " + appSignatureHashHelper.appSignatures[0])
+        Timber.tag(TAG).e("SMSHashKey: %s", appSignatureHashHelper.appSignatures[0])
 
     }
 
@@ -115,5 +113,9 @@ class BaseApplication : Application(), HasActivityInjector, LifecycleObserver {
 //            }
 //
 //        }
+    }
+
+    override fun androidInjector(): AndroidInjector<Any> {
+       return mActivityInjector
     }
 }
