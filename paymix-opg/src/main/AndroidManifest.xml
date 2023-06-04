@@ -5,12 +5,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <application
-        android:name="com.paymix.opg.base.BaseApplication"
-        >
+    <application>
 
         <activity
-            android:name="com.paymix.opg.old.apiclient.CardSelectionActivity"
+            android:name="com.paymix.opg.CardSelectionActivity"
             android:exported="true">
         </activity>
     </application>

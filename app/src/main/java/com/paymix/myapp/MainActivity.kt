@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.paymix.opg.old.apiclient.WalletmixOnlinePaymentGateway
+import com.paymix.opg.WalletmixOnlinePaymentGateway
 import com.walletmix.myapp.R
 import org.json.JSONException
 import org.json.JSONObject
@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        walletmixOnlinePGateway = WalletmixOnlinePaymentGateway(this)
+        walletmixOnlinePGateway =
+            WalletmixOnlinePaymentGateway(this)
 
         var button:Button=findViewById(R.id.init_payment)
 
@@ -57,8 +58,10 @@ class MainActivity : AppCompatActivity() {
                 "www.naimulnoor.com",
                 "",
             )
-            walletmixOnlinePGateway!!.startTransactions(true,MainActivity::class.java)
+            walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java)
         }
+
+
 
 
         try {

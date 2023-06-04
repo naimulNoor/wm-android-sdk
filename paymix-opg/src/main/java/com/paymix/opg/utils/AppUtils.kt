@@ -29,9 +29,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import com.squareup.picasso.BuildConfig
-import com.squareup.picasso.Picasso
-import com.wallemix.paymix.opg.R
+
 
 import java.io.File
 import java.io.IOException
@@ -45,7 +43,7 @@ class AppUtils private constructor() {
         val shared = AppUtils()
     }
     var mLastClickTime=0L
-    val isDebug: Boolean get() = BuildConfig.DEBUG
+    val isDebug: Boolean get() =true
 
     fun isOpenRecently():Boolean{
         if (SystemClock.elapsedRealtime() - mLastClickTime < 500){
