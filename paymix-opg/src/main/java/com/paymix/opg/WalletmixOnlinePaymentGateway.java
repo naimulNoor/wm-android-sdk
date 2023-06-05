@@ -11,8 +11,12 @@ import com.paymix.opg.apiclient.data.APIs;
 import com.paymix.opg.apiclient.data.NetworkUtils;
 import com.paymix.opg.apiclient.data.RetrofitHelperService;
 import com.paymix.opg.apiclient.pref.Keys;
+import com.paymix.opg.appInterface.OPGResponseListener;
 import com.paymix.opg.utils.AlertServices;
 import com.wallemix.paymix.opg.R;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -126,7 +130,9 @@ public class WalletmixOnlinePaymentGateway {
     }
 
 
-    public <T> void startTransactions(boolean isLive, Class<T> callBackActivityClass) {
+    public <T> void startTransactions(boolean isLive, @NotNull Class<T> callBackActivityClass, final OPGResponseListener oPGResponseListener) {
+
+
 
         this.isLive = isLive;
         this.callBackActivityClassName = callBackActivityClass.getCanonicalName();
@@ -136,34 +142,37 @@ public class WalletmixOnlinePaymentGateway {
             progressDialog.setMessage("Please wait...");
             progressDialog.setCancelable(false);
             progressDialog.show();
+
             retrofitHelperService.checkServer(isLive, new RetrofitHelperService.CheckServerApiCallListener() {
                 @Override
                 public void onSuccessfullySelectedServer(String initPaymentUrl, String bankPaymentUrl) {
                     init_Payment_Url = initPaymentUrl;
                     bank_payment_url = bankPaymentUrl;
+                    oPGResponseListener.intRequest(isLive,initPaymentUrl);
                     initPayment(init_Payment_Url);
                 }
 
                 @Override
                 public void onFailedToSelectServer(String failedMessage) {
-                    if (progressDialog != null && progressDialog.isShowing())
-                        progressDialog.dismiss();
+                    oPGResponseListener.onFailed(failedMessage);
+                    if (progressDialog != null && progressDialog.isShowing()) progressDialog.dismiss();
                     AlertServices.showAlertDialog(context, null, failedMessage, "Okay", null, null);
                 }
             });
 
         } else {
-            AlertServices.showAlertDialog(context, context.getString(R.string.connection_error_title), context.getString(R.string.connection_error_message),
-                    "Okay", null, null);
+            AlertServices.showAlertDialog(context, context.getString(R.string.connection_error_title), context.getString(R.string.connection_error_message), "Okay", null, null);
+            oPGResponseListener.onFailed(context.getString(R.string.connection_error_title));
         }
     }
 
 
-    private void initPayment(String initPaymentUrl) {
+    private void initPayment(String initPaymentUrl  ) {
         Map<String, String> initPaymentParams = getParamsMap();
         retrofitHelperService.initPayment(initPaymentUrl, initPaymentParams, new RetrofitHelperService.InitPaymentApiCallListener() {
             @Override
             public void onSuccessfullyInitPayment(String token) {
+
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
                         String cardSelectionPageUrl = bank_payment_url + "/" + token;
@@ -263,6 +272,7 @@ public class WalletmixOnlinePaymentGateway {
 
         return initPaymentParams;
     }
+
 
 
 }

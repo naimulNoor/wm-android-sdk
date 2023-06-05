@@ -5,6 +5,11 @@ import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.paymix.opg.WalletmixOnlinePaymentGateway
+import com.paymix.opg.apiclient.data.RetrofitHelperService.CheckServerApiCallListener
+import com.paymix.opg.apiclient.data.reponse.PaymentResponse
+import com.paymix.opg.appInterface.OPGResponseListener
+
+import com.paymix.opg.utils.AlertServices
 import com.walletmix.myapp.R
 import org.json.JSONException
 import org.json.JSONObject
@@ -58,8 +63,47 @@ class MainActivity : AppCompatActivity() {
                 "www.naimulnoor.com",
                 "",
             )
-            walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java)
+            walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java,
+                object : OPGResponseListener {
+                    override fun intRequest(sandBox: Boolean, initPaymentUrl: String?) {
+
+                    }
+
+                    override fun onProcessPaymentRequest(initPaymentUrl: String?) {
+
+                    }
+
+                    override fun onSuccessPaymentRequest(
+                        statusCode: Int,
+                        response: PaymentResponse?
+                    ) {
+
+                    }
+
+                    override fun onFailedPaymentRequest(
+                        statusCode: Int,
+                        response: PaymentResponse?
+                    ) {
+
+                    }
+
+                    override fun onDeclinedPaymentRequest(
+                        statusCode: Int,
+                        response: PaymentResponse?
+                    ) {
+
+                    }
+
+                    override fun onFailed(message: String?) {
+
+                    }
+
+
+                })
         }
+
+
+
 
 
 
