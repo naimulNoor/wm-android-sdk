@@ -1,5 +1,6 @@
 package com.paymix.opg;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import com.paymix.opg.utils.AlertServices;
 import com.wallemix.paymix.opg.R;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -149,7 +149,7 @@ public class WalletmixOnlinePaymentGateway {
                     init_Payment_Url = initPaymentUrl;
                     bank_payment_url = bankPaymentUrl;
                     oPGResponseListener.intRequest(isLive,initPaymentUrl);
-                    initPayment(init_Payment_Url);
+                    initPayment(init_Payment_Url,oPGResponseListener);
                 }
 
                 @Override
@@ -167,14 +167,16 @@ public class WalletmixOnlinePaymentGateway {
     }
 
 
-    private void initPayment(String initPaymentUrl  ) {
+    private void initPayment(String initPaymentUrl, OPGResponseListener oPGResponseListener) {
         Map<String, String> initPaymentParams = getParamsMap();
         retrofitHelperService.initPayment(initPaymentUrl, initPaymentParams, new RetrofitHelperService.InitPaymentApiCallListener() {
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onSuccessfullyInitPayment(String token) {
 
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
+                     oPGResponseListener.onProcessPaymentRequest(initPaymentUrl,initPaymentParams);
                         String cardSelectionPageUrl = bank_payment_url + "/" + token;
                         Intent cardSelectionIntent = new Intent(context, CardSelectionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         Bundle dataBundle = new Bundle();
@@ -186,7 +188,9 @@ public class WalletmixOnlinePaymentGateway {
                         dataBundle.putString(Keys.access_api_key.name(), access_app_key);
                         dataBundle.putString(Keys.authorization.name(), authorization);
                         dataBundle.putString(Keys.call_back_activity_class_name.name(), callBackActivityClassName);
+                        cardSelectionIntent.putExtra("OPG-LISTENER",oPGResponseListener);
                         cardSelectionIntent.putExtra(Keys.data_bundle.name(), dataBundle);
+
                         context.startActivity(cardSelectionIntent);
 
                 Log.d("init-payment-token",token);
@@ -224,6 +228,7 @@ public class WalletmixOnlinePaymentGateway {
             public void onFailedToInitPayment(String failedMessage) {
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
+                oPGResponseListener.onFailed(failedMessage);
                 AlertServices.showAlertDialog(context, null, failedMessage, "Okay", null, null);
             }
         });

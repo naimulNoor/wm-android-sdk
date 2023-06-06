@@ -13,17 +13,25 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.paymix.opg.apiclient.data.APIs;
 import com.paymix.opg.apiclient.data.RetrofitHelperService;
+import com.paymix.opg.apiclient.data.reponse.PaymentResponse;
 import com.paymix.opg.apiclient.pref.Keys;
+import com.paymix.opg.appInterface.OPGResponseListener;
 import com.paymix.opg.utils.AlertServices;
 import com.wallemix.paymix.opg.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CardSelectionActivity extends AppCompatActivity {
 
@@ -32,6 +40,11 @@ public class CardSelectionActivity extends AppCompatActivity {
     String abort_sandbox, abort_live;
     final int WEB_VIEW_ID = 123;
     RetrofitHelperService retrofitHelperService;
+
+    OPGResponseListener callback;
+
+
+
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -48,6 +61,8 @@ public class CardSelectionActivity extends AppCompatActivity {
             authorization = dataBundle.getString(Keys.authorization.name());
             callBackActivityClassName = dataBundle.getString(Keys.call_back_activity_class_name.name());
             isLive = dataBundle.getBoolean(Keys.is_live.name());
+            callback= (OPGResponseListener) getIntent().getSerializableExtra("OPG-LISTENER");
+
         }
 
         // Making View Programmatically
@@ -78,7 +93,8 @@ public class CardSelectionActivity extends AppCompatActivity {
     }
 
 
-    private class MyCardSelectionWebViewClient extends WebViewClient {
+
+    private class MyCardSelectionWebViewClient extends WebViewClient  {
         @Override
         public void onReceivedSslError(WebView view, final SslErrorHandler handler, SslError error) {
 
@@ -116,13 +132,19 @@ public class CardSelectionActivity extends AppCompatActivity {
                     @Override
                     public void onSuccessfullyCheckedPayment(String checkPaymentResponse) {
                         try {
-                            Intent intent = new Intent(CardSelectionActivity.this, Class.forName(callBackActivityClassName));
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.putExtra("response", checkPaymentResponse);
-                            startActivity(intent);
+
+                            JSONObject jsonObject = new JSONObject(checkPaymentResponse);
+                            String status = jsonObject.getString("txn_status");
+                            PaymentResponse paymentResponse=new Gson().fromJson(checkPaymentResponse, PaymentResponse.class);
+                            switch (Integer.parseInt(status)){
+                                case 1000:callback.onSuccessPaymentRequest(Integer.parseInt(status),paymentResponse);break;
+                                case 1001:callback.onDeclinedPaymentRequest(Integer.parseInt(status),paymentResponse);break;
+                                case 1009:callback.onFailedPaymentRequest(Integer.parseInt(status),paymentResponse);break;
+                                default: callback.onFailed("Payment Request Failed");
+                            }
                             finish();
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                        }  catch (JSONException e) {
+                            throw new RuntimeException(e);
                         }
                     }
 
@@ -133,16 +155,16 @@ public class CardSelectionActivity extends AppCompatActivity {
                 });
             } else if (url.equals(abort_sandbox) || url.equals(abort_live)) {
                 view.loadUrl("about:blank");
-                try {
-                    Intent intent = new Intent(CardSelectionActivity.this, Class.forName(callBackActivityClassName));
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("response", String.valueOf(false));
-                    startActivity(intent);
-                    finish();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                callback.onFailed("Payment Request Failed");
+                finish();
+
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        callback.onFailed("Payment Request Abort");
     }
 }

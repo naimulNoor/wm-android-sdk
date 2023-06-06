@@ -1,6 +1,7 @@
 package com.paymix.myapp
 
 import android.os.Bundle
+import android.os.Parcel
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -66,36 +67,28 @@ class MainActivity : AppCompatActivity() {
             walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java,
                 object : OPGResponseListener {
                     override fun intRequest(sandBox: Boolean, initPaymentUrl: String?) {
+                        Log.d("opg-listener","init")
 
                     }
 
-                    override fun onProcessPaymentRequest(initPaymentUrl: String?) {
-
+                    override fun onProcessPaymentRequest(initPaymentUrl: String?,peramiter:Map<String,String>) {
+                        Log.d("opg-listener","onProcessPaymentRequest")
                     }
 
-                    override fun onSuccessPaymentRequest(
-                        statusCode: Int,
-                        response: PaymentResponse?
-                    ) {
-
+                    override fun onSuccessPaymentRequest(statusCode: Int, response: PaymentResponse?) {
+                        Log.d("opg-listener","onSuccessPaymentRequest::${response!!.requestIp}::status-code::${statusCode}")
                     }
 
-                    override fun onFailedPaymentRequest(
-                        statusCode: Int,
-                        response: PaymentResponse?
-                    ) {
-
+                    override fun onFailedPaymentRequest(statusCode: Int, response: PaymentResponse?) {
+                        Log.d("opg-listener","onFailedPaymentRequest::${response}::status-code::${statusCode}")
                     }
 
-                    override fun onDeclinedPaymentRequest(
-                        statusCode: Int,
-                        response: PaymentResponse?
-                    ) {
-
+                    override fun onDeclinedPaymentRequest(statusCode: Int, response: PaymentResponse?) {
+                        Log.d("opg-listener","onDeclinedPaymentRequest::${response}::status-code::${statusCode}")
                     }
 
                     override fun onFailed(message: String?) {
-
+                        Log.d("opg-listener","onfailed:::${message}")
                     }
 
 
