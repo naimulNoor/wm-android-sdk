@@ -43,6 +43,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     //add sdk module to the application
     implementation project(path: ':paymix-opg')
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation 'net.logstash.logback:logstash-logback-encoder:6.6'
+    implementation 'org.slf4j:slf4j-api:2.0.0'
+    implementation 'com.github.tony19:logback-android-core:1.2.5-2'
+    implementation 'com.github.tony19:logback-android-classic:1.2.5-2'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 

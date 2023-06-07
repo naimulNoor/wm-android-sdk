@@ -1,35 +1,37 @@
 package com.paymix.myapp
 
 import android.os.Bundle
-import android.os.Parcel
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.paymix.opg.WalletmixOnlinePaymentGateway
-import com.paymix.opg.apiclient.data.RetrofitHelperService.CheckServerApiCallListener
 import com.paymix.opg.apiclient.data.reponse.PaymentResponse
 import com.paymix.opg.appInterface.OPGResponseListener
-
-import com.paymix.opg.utils.AlertServices
 import com.walletmix.myapp.R
-import org.json.JSONException
-import org.json.JSONObject
-
+import org.slf4j.LoggerFactory
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private var walletmixOnlinePGateway: WalletmixOnlinePaymentGateway? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //add timber log;
+        //plant(TimberLogstashTreeConf())
+        val logger = LoggerFactory.getLogger(MainActivity::class.java)
+        logger.debug("This is a debug log message.");
+        logger.info("This is an info log message.");
+        logger.error("This is an error log message.");
         walletmixOnlinePGateway =
             WalletmixOnlinePaymentGateway(this)
 
-        var button:Button=findViewById(R.id.init_payment)
+        var button: Button = findViewById(R.id.init_payment)
 
         val wmx_id = "WMX60ac7f66a4f2c"
         val access_app_key = "f2af089d817955e2f02c277bb502e5a4b522df31"
         val merchant_user_name = "bogubd_568249845"
         val merchant_pass = "bogubd_1528854484"
+
+        Timber.tag("MainActivity").d("Debug log message");
 
         //live for cholbe robi
 //        val wmx_id = "WMX5a2d2d56aab99"
@@ -38,14 +40,14 @@ class MainActivity : AppCompatActivity() {
 //        val merchant_pass = "robi_cholbe_128505461"
 
 
-        button.setOnClickListener{
+        button.setOnClickListener {
             walletmixOnlinePGateway!!.setTransactionInformation(
                 wmx_id,
                 merchant_user_name,
                 merchant_pass,
                 access_app_key,
-                "wl"+(0..10000).random(),
-                "wl"+(0..10000).random(),
+                "wl" + (0..10000).random(),
+                "wl" + (0..10000).random(),
                 "Naimul Hassan Noor",
                 "01733433672",
                 "a@b.com",
@@ -64,31 +66,46 @@ class MainActivity : AppCompatActivity() {
                 "www.naimulnoor.com",
                 "",
             )
-            walletmixOnlinePGateway!!.startTransactions(false,MainActivity::class.java,
+            walletmixOnlinePGateway!!.startTransactions(false, MainActivity::class.java,
                 object : OPGResponseListener {
                     override fun intRequest(sandBox: Boolean, initPaymentUrl: String?) {
-                        Log.d("opg-listener","init")
+                        Timber.tag("opg-listener").d("init")
 
                     }
 
-                    override fun onProcessPaymentRequest(initPaymentUrl: String?,peramiter:Map<String,String>) {
-                        Log.d("opg-listener","onProcessPaymentRequest")
+                    override fun onProcessPaymentRequest(
+                        initPaymentUrl: String?,
+                        peramiter: Map<String, String>
+                    ) {
+                        Timber.tag("opg-listener").d("onProcessPaymentRequest")
                     }
 
-                    override fun onSuccessPaymentRequest(statusCode: Int, response: PaymentResponse?) {
-                        Log.d("opg-listener","onSuccessPaymentRequest::${response!!.requestIp}::status-code::${statusCode}")
+                    override fun onSuccessPaymentRequest(
+                        statusCode: Int,
+                        response: PaymentResponse?
+                    ) {
+                        Timber.tag("opg-listener")
+                            .d("onSuccessPaymentRequest::" + response!!.requestIp + "::status-code::" + statusCode)
                     }
 
-                    override fun onFailedPaymentRequest(statusCode: Int, response: PaymentResponse?) {
-                        Log.d("opg-listener","onFailedPaymentRequest::${response}::status-code::${statusCode}")
+                    override fun onFailedPaymentRequest(
+                        statusCode: Int,
+                        response: PaymentResponse?
+                    ) {
+                        Timber.tag("opg-listener")
+                            .d("onFailedPaymentRequest::" + response + "::status-code::" + statusCode)
                     }
 
-                    override fun onDeclinedPaymentRequest(statusCode: Int, response: PaymentResponse?) {
-                        Log.d("opg-listener","onDeclinedPaymentRequest::${response}::status-code::${statusCode}")
+                    override fun onDeclinedPaymentRequest(
+                        statusCode: Int,
+                        response: PaymentResponse?
+                    ) {
+                        Timber.tag("opg-listener")
+                            .d("onDeclinedPaymentRequest::" + response + "::status-code::" + statusCode)
                     }
 
                     override fun onFailed(message: String?) {
-                        Log.d("opg-listener","onfailed:::${message}")
+                        Timber.tag("opg-listener").d("onfailed:::" + message)
                     }
 
 
@@ -101,34 +118,36 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        try {
-            val response = intent.getStringExtra("response")
-            val jsonObject: JSONObject
-            val responseTxnStatus: String
-            if (response != null) {
-                if (response == "false") {
-                    Log.d("payment-response", "Transaction was incomplete. Please try again to complete your transaction.")
-
-                } else {
-                    try {
-                        jsonObject = JSONObject(response)
-                        responseTxnStatus = jsonObject.getString("txn_status")
-                        when (responseTxnStatus) {
-                            "1000" -> Log.d("payment-response", "Your transaction was Success")
-
-                            "1001" -> Log.d("payment-response", "Your transaction was REJECTED")
-
-                            "1009" -> Log.d("payment-response", "Your Transaction was  CANCELLED.")
-                        }
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                    }
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
+//        try {
+//            val response = intent.getStringExtra("response")
+//            val jsonObject: JSONObject
+//            val responseTxnStatus: String
+//            if (response != null) {
+//                if (response == "false") {
+//                    Log.d(
+//                        "payment-response",
+//                        "Transaction was incomplete. Please try again to complete your transaction."
+//                    )
+//
+//                } else {
+//                    try {
+//                        jsonObject = JSONObject(response)
+//                        responseTxnStatus = jsonObject.getString("txn_status")
+//                        when (responseTxnStatus) {
+//                            "1000" -> Log.d("payment-response", "Your transaction was Success")
+//
+//                            "1001" -> Log.d("payment-response", "Your transaction was REJECTED")
+//
+//                            "1009" -> Log.d("payment-response", "Your Transaction was  CANCELLED.")
+//                        }
+//                    } catch (e: JSONException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
 
 
     }
