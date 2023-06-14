@@ -7,7 +7,6 @@ import com.paymix.opg.WalletmixOnlinePaymentGateway
 import com.paymix.opg.apiclient.data.reponse.PaymentResponse
 import com.paymix.opg.appInterface.OPGResponseListener
 import com.walletmix.myapp.R
-import org.slf4j.LoggerFactory
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -17,12 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //add timber log;
         //plant(TimberLogstashTreeConf())
-        val logger = LoggerFactory.getLogger(MainActivity::class.java)
-        logger.debug("This is a debug log message.");
-        logger.info("This is an info log message.");
-        logger.error("This is an error log message.");
-        walletmixOnlinePGateway =
-            WalletmixOnlinePaymentGateway(this)
+
+        walletmixOnlinePGateway = WalletmixOnlinePaymentGateway(this)
 
         var button: Button = findViewById(R.id.init_payment)
 
@@ -31,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         val merchant_user_name = "bogubd_568249845"
         val merchant_pass = "bogubd_1528854484"
 
-        Timber.tag("MainActivity").d("Debug log message");
 
         //live for cholbe robi
 //        val wmx_id = "WMX5a2d2d56aab99"
