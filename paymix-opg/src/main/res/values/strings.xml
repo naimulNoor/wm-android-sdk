@@ -1,0 +1,574 @@
+<!DOCTYPE resources [<!ENTITY appname "Cholbe Robi">]>
+
+<resources>
+    <string name="app_name" translatable="false">&appname;</string>
+    <string name="facebook_app_id">178794189490069</string>
+    <string name="fb_login_protocol_scheme">fb178794189490069</string>
+    <string name="ak_login_protocol_scheme">ak178794189490069</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">efac17bd32879700ccd043039be1d56a</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="new_user">New User?</string>
+    <string name="create_account">Create Account</string>
+    <!--Button + EditText Text-->
+    <string name="submit">Submit</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="go">Go</string>
+    <string name="done">Done</string>
+    <string name="username">User name</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype Password</string>
+    <string name="change">Change</string>
+    <string name="ok">OK</string>
+    <string name="button_not_now">NOT NOW</string>
+    <string name="buttoin_continue">CONTINUE</string>
+    <string name="button_settings">SETTINGS</string>
+    <string name="button_attach_screen_shot">Attach Screenshot</string>
+    <string name="button_done">DONE</string>
+    <string name="button_no">NO</string>
+    <string name="button_yes">YES</string>
+    <string name="button_cancel">@android:string/cancel</string>
+    <string name="button_topup">Topup</string>
+    <string name="button_send">SEND</string>
+    <string name="radio_button_prepaid">Prepaid</string>
+    <string name="radio_button_postpaind">Postpaid</string>
+    <string name="radio_button_robi">Robi</string>
+    <string name="radio_button_airtel">Airtel</string>
+    <string name="button_save">SAVE</string>
+    <string name="button_edit_profile">EDIT PROFILE</string>
+    <string name="button_create_account">CREATE ACCOUNT</string>
+    <string name="button_try_again">TAP TO RETRY</string>
+
+
+    <!--loading start-->
+    <string name="loading">Please wait&#8230;</string>
+    <string name="registering">Registering&#8230;</string>
+    <string name="log_in_loading">Logging in&#8230;</string>
+    <string name="sign_in_loading">Signing in&#8230;</string>
+    <string name="sign_up_loading">Signing up&#8230;</string>
+    <string name="please_wait_loading">Please wait&#8230;</string>
+    <string name="saving_loading">Saving&#8230;</string>
+    <string name="updating_loading">Updating&#8230;</string>
+    <string name="deleting_loading">Deleting&#8230;</string>
+    <string name="sending_loading">Sending&#8230;</string>
+    <!--loading end-->
+
+
+    <!--login screen start-->
+    <string name="login_user_name_empty">User name can not be empty.</string>
+    <string name="login_password_empty">Password can not be empty.</string>
+    <string name="login_password_incorrect">Password is incorrect.</string>
+    <string name="login_success">Login Success</string>
+    <string name="login_keep_me_logged_in">Remember Me</string>
+    <string name="login_robi_airtel_license">Robi Axiata Limited is the licensee of \'Airtel\' brand in Bangladesh</string>
+    <string name="login_failed_message">Login failed. Please try again.</string>
+    <string name="login_wrong_username_or_password">Wrong username and/or password.</string>
+    <!--login screen end-->
+
+
+    <!--forgot password screen start-->
+    <string name="forgot_pass_title">Forgot Password ?</string>
+    <string name="forgot_pass_message">Just enter your registered email to get your password reset instructions.</string>
+    <string name="forgot_pass_reset_btn">RESET PASSWORD</string>
+    <string name="forgot_pass_empty_email">Email can not be empty.</string>
+    <string name="forgot_pass_invalid_email">Email is not valid.</string>
+    <!--forgot password screen end-->
+
+
+    <!--Registration Screen-->
+    <string name="reg_hint_name">Name*</string>
+    <string name="reg_hint_last_name">Last Name</string>
+    <string name="reg_hint_contact_no">Contact No*</string>
+    <string name="reg_hint_referral">Referral</string>
+    <string name="reg_hint_district">District</string>
+    <string name="reg_hint_profession">Profession</string>
+    <string name="reg_hint_email">Email</string>
+
+    <string name="error_first_name_empty">First name can not be empty.</string>
+    <string name="error_first_name_length">First name must be at least 3 characters</string>
+    <string name="error_last_name_empty">Last Name can not be empty.</string>
+    <string name="error_contact_num_empty">Contact No. can not be empty.</string>
+    <string name="error_contact_length">Contact must be of 11 digits.</string>
+    <string name="error_email_empty">Email can not be empty.</string>
+    <string name="error_email_invalid">Email is not valid.</string>
+    <string name="error_username_empty">User name can not be empty.</string>
+    <string name="error_username_length">User name must be at least 3 characters.</string>
+    <string name="error_pass_empty">Password can not be empty.</string>
+    <string name="error_pass_length">Password must be at least 8 characters.</string>
+    <string name="error_confirm_pass_empty">Re type Password cannot be empty</string>
+    <string name="error_pass_did_not_match">Password did not match.</string>
+
+    <!--Setting screen start-->
+    <string name="settings_logout">Log out</string>
+    <string name="settings_contact_us">Contact us</string>
+    <string name="settings_about_us">About us</string>
+    <string name="settings_change_pin">Change transaction PIN</string>
+    <string name="settings_change_password">Change password</string>
+    <string name="settings_forgot_pin">Forgot transaction PIN</string>
+    <string name="forgot_pin_dialog_title">Forgot Transaction PIN ?</string>
+    <string name="forgot_pin_dialog_message">To get your transaction PIN to your registered email press \'GET PIN\'.</string>
+    <string name="forgot_pin_dialog_negative_btn">NOT NOW</string>
+    <string name="forgot_pin_dialog_positive_btn">GET PIN</string>
+
+    //Validation message
+    <string name="change_pass_current_empty">Current password can not be empty.</string>
+    <string name="change_pass_new_empty">New password can not be empty.</string>
+    <string name="change_pass_retyped_empty">Retyped new password can not be empty.</string>
+    <string name="change_pass_length">Password must be at least 8 characters.</string>
+    <string name="change_pass_did_not_match">Password did not match</string>
+
+    <string name="change_pin_current_empty">Current pin can not be empty.</string>
+    <string name="change_pin_new_empty">New pin can not be empty.</string>
+    <string name="change_pin_retyped_empty">Retyped new pin can not be empty.</string>
+    <string name="change_pin_length">Pin must be 4-digits</string>
+    <string name="change_pin_did_not_match">Pin did not match</string>
+
+    //Hint
+    <string name="hint_current_pass">CURRENT PASSWORD</string>
+    <string name="hint_new_pass">NEW PASSWORD</string>
+    <string name="hint_retype_new_pass">CONFIRM NEW PASSWORD</string>
+
+    <string name="hint_current_pin">CURRENT PIN</string>
+    <string name="hint_new_pin">NEW PIN</string>
+    <string name="hint_retype_new_pin">CONFIRM NEW PIN</string>
+    <!--Setting screen end-->
+
+
+    <!--ErrorMessages-->
+    <string name="internet_error">No Internet Connection !</string>
+    <string name="internet_error_message">We are having trouble to connect with the internet. Please check your internet connection and try again.</string>
+    <string name="unauthorized_title">ALERT !</string>
+    <string name="error">Error</string>
+    <string name="unauthorized_message">Your account has been logged into from another device. Please log out and login again.</string>
+    <string name="sorry">WERE SORRY</string>
+    <string name="server_problem_message">We\'re having some trouble completing your request at this moment. Please try again shortly.</string>
+    <string name="time_out_message">Could not connect with the server. Please try again later.</string>
+    <string name="exit_message">Please click BACK again to exit</string>
+
+    <!--Hint-->
+    <string name="hint_username">User name</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_pass">Confirm Password</string>
+    <string name="hint_email">example@email.com</string>
+
+    <!--Distributor Home Screen-->
+    <string name="distributor">Distributor</string>
+    <string name="home_my_cash_title">My Cash</string>
+    <string name="home_my_cash_subtitle">Cash Withdraw</string>
+    <string name="home_easyload_requisition_title">My Easyload Requisition</string>
+    <string name="home_easyload_requisition_subitle">Today\'s purchased easyload by me</string>
+    <string name="home_physical_product_requisiton_title">My Physical Product Requisition</string>
+    <string name="home_physical_product_requisiton_subtitle">Total amount of physical product requisition</string>
+    <string name="home_dsr_cash_on_deliver_title">DSR Cash on Delivery</string>
+    <string name="home_dsr_cash_on_deliver_subtitle">Cahs on delivery by DSR</string>
+
+    <!--Nav menu-->
+    <string name="nav_topup">Topup</string>
+    <string name="nav_topup_history">Topup History</string>
+    <string name="nav_add_fund">Add Fund</string>
+    <string name="nav_fund_history">Fund History</string>
+    <string name="nav_support">Support</string>
+    <string name="nav_support_history">Support History</string>
+    <string name="nav_commission_history">Commission History</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_share_this_app">Share This App</string>
+    <string name="nav_rate_this_app">Rate This App</string>
+    <string name="nav_about_us">About Us</string>
+    <string name="nav_logout">Log Out</string>
+
+    <string name="logout_confirmation_title">Logout !</string>
+    <string name="logout_confirmation_msg">Are you sure you want to logout ?</string>
+
+
+    <!--Add Fund Screen-->
+    <string name="add_fund_amount">Amount (in BDT)</string>
+    <string name="add_fund_remarks">Remarks</string>
+    <string name="proceed_to_pay">Proceed to pay</string>
+    <string name="add_fund_remarks_empty">Remarks can not be empty</string>
+    <string name="add_fund_amount_must_at_least_10">Amount must be at least 10 Tk.</string>
+
+    <!--about us-->
+    <string name="about_us_address">Address:\nHouse # 2/B Road # 08\nNikunja-2, Khilkhet, Dhaka.</string>
+
+    <!--Runtime Permission-->
+    <string name="permission_required">Permission Required</string>
+    <string name="permission_contact_denied_one">To pick contact from your phone book allow &appname;
+        access to your contacts.</string>
+    <string name="permission_contact_denied_two">To pick contact from your phone book allow &appname;
+        access to your contacts. Tap Settings > App permissions and turn Contacts on.</string>
+    <string name="permission_storage_denied_one">To attach photos from your gallery allow &appname;
+        access to your storage.</string>
+    <string name="permission_storage_denied_two">To attach photos from your gallery allow &appname;
+        access to your storage. Tap Settings > App permissions and turn Storage on.</string>
+    <string name="permission_camera_denied_one">To capture photos allow &appname; access to your camera.</string>
+    <string name="permission_camera_denied_two">To capture photos allow &appname; access to your camera. Tap Settings > App permissions and turn Camera on.</string>
+    <string name="permission_to_save_image_one">To save photos in your gallery allow &appname;
+        access to your storage.</string>
+    <string name="permission_to_save_image_two">To save photos in your gallery allow &appname;
+        access to your storage. Tap Settings > App permissions and turn Storage on.</string>
+
+
+    <!--Add support-->
+    <string name="support_title">Support title</string>
+    <string name="support_transaction_date">Transaction date</string>
+    <string name="support_topup_number">Topup number</string>
+    <string name="support_amount">Amount</string>
+    <string name="support_card_number">Card number</string>
+    <string name="support_description">Description</string>
+    <string name="fund_add_related_query">Fund Add Related</string>
+    <string name="recharge_add_related_query">Recharge Related</string>
+    <string name="others_query">Others</string>
+
+    <!--Bottom Navigation View Menu-->
+    <string name="b_nav_topup">Topup</string>
+    <string name="b_nav_offer">Offer</string>
+    <string name="b_nav_me">Me</string>
+    <string name="b_nav_more">More</string>
+
+    <!--Bottom sheet menu-->
+    <string name="take_from_camera">Take from Camera</string>
+    <string name="select_from_gallery">Select from Gallery</string>
+
+    <!--Topup Fragment-->
+    <string name="requesting_toup">Requesting topup&#8230;</string>
+    <string name="topup_successfull_dialog">Topup Successful</string>
+    <string name="topup_number_empty">Topup number can not be empty.</string>
+    <string name="topup_number_length">Topup number must be 11-digits</string>
+    <string name="topup_number_robi_airtel">Topup number must be Robi or Airtel</string>
+    <string name="topup_amount_empty">Topup amount can not be empty.</string>
+    <string name="topup_limit_for_prepaid">Amount must be BDT 10 to BDT 1000</string>
+    <string name="topup_limit_for_postpaid">Amount must be BDT 50 to BDT 5000</string>
+    <string name="topup_hint_enter_number">Enter Topup Number</string>
+    <string name="topup_hitn_enter_amount">Enter Amount</string>
+    <string name="topup_title_enter_number">Topup Number</string>
+    <string name="topup_title_enter_amount">Amount (in BDT)</string>
+    <string name="topup_quick_amount">Quick Amount:</string>
+    <string name="topup_self">(Self):</string>
+
+    <!--Profile Screen-->
+    <string name="profile_referral_id">REFERRAL ID</string>
+    <string name="profile_referral_user">REFERRAL USER</string>
+    <string name="profile_username">USER NAME</string>
+    <string name="profile_contact">CONTACT NO.</string>
+    <string name="profile_email">EMAIL</string>
+    <string name="profile_date_of_birth">DATE OF BIRTH</string>
+    <string name="profile_blood_group">BLOOD GROUP</string>
+    <string name="profile_gender">GENDER</string>
+    <string name="profile_share_referral_id">Share Referral Id</string>
+    <string name="profile_verified">Verified</string>
+    <string name="verify_now_button">Verify Now</string>
+
+    <!--Edit Profile-->
+    <string name="edit_profile_first_name">FIRST NAME</string>
+    <string name="edit_profile_last_name">LAST NAME</string>
+    <string name="edit_profile_contact">CONTACT NO.</string>
+    <string name="edit_profile_email">EMAIL</string>
+    <string name="edit_profile_date_of_birth">DATE OF BIRTH</string>
+    <string name="edit_profile_blood_group">BLOOD GROUP</string>
+    <string name="edit_profile_gender">GENDER</string>
+    <string name="edit_profile_user_name">USER NAME</string>
+    <string name="edit_profile_district">DISTRICT</string>
+    <string name="edit_profile_profession">PROFESSION</string>
+
+    //Quick amount ........
+
+    <string name="quick_amount_first">20</string>
+    <string name="quick_amount_second">50</string>
+    <string name="quick_amount_third">100</string>
+    <string name="quick_amount_fourth">150</string>
+    <string name="quick_amount_fifth">200</string>
+    <string name="quick_amount_sixth">250</string>
+
+    <!--Add fund Quick amount-->
+    <string name="add_fund_quick_amount_first">100</string>
+    <string name="add_fund_quick_amount_second">200</string>
+    <string name="add_fund_quick_amount_third">500</string>
+    <string name="add_fund_quick_amount_fourth">1000</string>
+    <string name="add_fund_quick_amount_fifth">2000</string>
+
+    //Notifications screen
+    <string name="notifications">Notifications</string>
+    <string name="notification_no_found">No Notifications Found !</string>
+    <string name="notification_clear_all">CLEAR ALL</string>
+    <string name="notification_clear_title">Clear Notifications</string>
+    <string name="notification_clear_message">Are you sure you want to clear all notifications ?</string>
+
+
+    //Status
+    <string name="status_all">All</string>
+    <string name="status_success">Success</string>
+    <string name="status_pending">Pending</string>
+    <string name="status_failed">Failed</string>
+    <string name="status_attempt">Attempt</string>
+    <string name="status_rejected">Rejected</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="status_solved">Solved</string>
+    <string name="status_topup">TopUp</string>
+    <string name="status_fund">Fund</string>
+
+    //Header
+    <string name="header_time">Time</string>
+    <string name="header_status">Status</string>
+    <string name="header_comments">Comments</string>
+    <string name="header_support_type">Support Type</string>
+    <string name="header_amount">Amount</string>
+    <string name="header_topup_no">TopUp No.</string>
+    <string name="header_ratio">Ratio</string>
+    <string name="header_invoice">Invoice</string>
+    <string name="header_description">Description</string>
+
+
+    <!--History-->
+    <string name="history_topup_no_found">No topUp history found.</string>
+    <string name="history_fund_no_found">No fund history found.</string>
+    <string name="history_support_no_found">No support history found.</string>
+    <string name="history_commission_no_found">No commission history found.</string>
+    <string name="history_no_reply_found">No Reply found.</string>
+    <string name="write_reply">Write your reply</string>
+    <string name="history_from">Start date</string>
+    <string name="history_to">End date</string>
+    <string name="history_time">TIME</string>
+    <string name="history_status">STATUS</string>
+    <string name="history_choose_status">Choose Status</string>
+
+
+    <!--offer-->
+    <string name="offer_all">ALL</string>
+    <string name="offer_robi">ROBI</string>
+    <string name="offer_airtel">AIRTEL</string>
+    <string name="offer_including_all_taxes">(Including all Taxes)</string>
+    <string name="validity">Validity</string>
+    <string name="tk">TK</string>
+    <string name="offer_commission">Offer Commission</string>
+    <string name="button_recharge_and_activate">RECHARGE AND ACTIVATE</string>
+    <string name="offer_rewards">Rewards</string>
+    <string name="offer_current_balance">Current Balance</string>
+    <string name="offer_remaining_balance">Remaining Balance</string>
+
+    <string name="system_upgrading">System Upgrading</string>
+    <string name="systyem_upgrading_message">Due to system upgrade &appname; service is currently off. You will be notified when it will be available. Please keep patience.</string>
+
+    <!--Set pin-->
+    <string name="pin_set_message">Please set a 4-digit transaction pin. This pin is required for making transactions and recharge. It is important for your account security.</string>
+    <string name="pin_set_button">SET PIN</string>
+
+    <!--Email Verification-->
+    <string name="email_verify_dialog_title">Email Verification Required</string>
+    <string name="email_verify_dialog_msg">You need to verify your email for doing any transaction like topUp or Add Fund.</string>
+
+    <!--App Update-->
+    <string name="app_update_title">New Update Available</string>
+    <string name="app_update_body">Please, update app to new version to continue using.</string>
+    <string name="app_update_btn">Update Now</string>
+
+
+    <string name="button_continue">Continue</string>
+
+    <string name="button_retry">RETRY</string>
+
+    <string name="check_server_error_message">Please try again</string>
+    <string name="check_server_error_title">Server Request Error</string>
+    <string name="connection_error_message">Please check your internet connectivity and try again.</string>
+    <string name="connection_error_title">No Internet Connection</string>
+    <string name="ssl_error_message">Alert SSL error!</string>
+    <string name="balance">Balance</string>
+    <string name="topup_history">Topup history</string>
+
+    <string name="fund_history">Fund history</string>
+
+    <string name="commission_history">Commission history</string>
+    <string name="support_history">Support history</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="id">Id</string>
+    <string name="add_fund_amount_empty">Amount can not be empty</string>
+    <string name="reg_hint_first_name">First Name</string>
+    <string name="session_error_title">Session Expired</string>
+    <string name="session_error_msg">Your session has been expired. Please login again to continue</string>
+
+    <string name="reward">Rewards</string>
+    <string name="voice">Voice</string>
+
+    <string name="data">Data</string>
+    <string name="sms">SMS</string>
+    <string name="mms">MMS</string>
+    <string name="pack">Pack</string>
+    <string name="offer_1st">To purchase this offer you must recharge at least </string>
+    <string name="offer_2nd"> </string>
+
+    <string name="insufficient_balance">Insufficient Balance</string>
+    <string name="buy_offer">Buy Offer</string>
+    <string name="offer">Offer</string>
+    <string name="profile">Profile</string>
+    <string name="language">বাংলা</string>
+    <string name="languageT">Language</string>
+    <string name="add_fund_success_msg">"Successfully added fund."</string>
+    <string name="add_fund_failed_msg">"Failed to add fund."</string>
+
+
+    <string name="pin_sent_success_msg">Successfully PIN sent</string>
+    <string name="pin_sent_failed_msg">Failed to send PIN</string>
+
+    <string name="edit_profile_success_msg">Profile updated successfully</string>
+    <string name="edit_profile">"Edit Profile"</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="login_failed_msg">You have entered wrong Username or Password.</string>
+
+
+    <string-array name="district_array">
+        <item>Dhaka</item>
+        <item>Faridpur</item>
+        <item>Gazipur</item>
+        <item>Gopalganj</item>
+        <item>Jamalpur</item>
+        <item>Kishoreganj</item>
+        <item>Madaripur</item>
+        <item>Manikganj</item>
+        <item>Munshiganj</item>
+        <item>Mymensingh</item>
+        <item>Narayanganj</item>
+        <item>Narsingdi</item>
+        <item>Netrokona</item>
+        <item>Rajbari</item>
+        <item>Shariatpur</item>
+        <item>Sherpur</item>
+        <item>Tangail</item>
+        <item>Bogra</item>
+        <item>Joypurhat</item>
+        <item>Naogaon</item>
+        <item>Natore</item>
+        <item>Nawabganj</item>
+        <item>Pabna</item>
+        <item>Rajshahi</item>
+        <item>Sirajgonj</item>
+        <item>Dinajpur</item>
+        <item>Gaibandha</item>
+        <item>Kurigram</item>
+        <item>Lalmonirhat</item>
+        <item>Nilphamari</item>
+        <item>Panchagarh</item>
+        <item>Rangpur</item>
+        <item>Thakurgaon</item>
+        <item>Barguna</item>
+        <item>Barisal</item>
+        <item>Bhola</item>
+        <item>Jhalokati</item>
+        <item>Patuakhali</item>
+        <item>Pirojpur</item>
+        <item>Bandarban</item>
+        <item>Brahmanbaria</item>
+        <item>Chandpur</item>
+        <item>Chittagong</item>
+        <item>Comilla</item>
+        <item>Coxs Bazar</item>
+        <item>Feni</item>
+        <item>Khagrachari</item>
+        <item>Lakshmipur</item>
+        <item>Noakhali</item>
+        <item>Rangamati</item>
+        <item>Habiganj</item>
+        <item>Maulvibazar</item>
+        <item>Sunamganj</item>
+        <item>Sylhet</item>
+        <item>Bagerhat</item>
+        <item>Chuadanga</item>
+        <item>Jessore</item>
+        <item>Jhenaidah</item>
+        <item>Khulna</item>
+        <item>Kushtia</item>
+        <item>Magura</item>
+        <item>Meherpur</item>
+        <item>Narail</item>
+        <item>Sathira</item>
+    </string-array>
+    <string-array name="proffession_array">
+        <item>"Accountant"</item>
+        <item>"Actor"</item>
+        <item>"Actuary"</item>
+        <item>"Adviser"</item>
+        <item>"Android Developer"</item>
+        <item>"iOS Developer"</item>
+        <item>"Android &amp; iOS Developer"</item>
+        <item>"Artist"</item>
+        <item>"Barber"</item>
+        <item>"Broker"</item>
+        <item>"Businessman"</item>
+        <item>"Butcher"</item>
+        <item>"Cashier"</item>
+        <item>"Chef"</item>
+        <item>"Consultant"</item>
+        <item>"Corporate Job"</item>
+        <item>"Dental hygienist"</item>
+        <item>"Dentist"</item>
+        <item>"Designer"</item>
+        <item>"Dietitian"</item>
+        <item>"Electrician"</item>
+        <item>"Engineer"</item>
+        <item>"Engineering technologist"</item>
+        <item>"Expert","Farmer"</item>
+        <item>"Firefighter"</item>
+        <item>"Govt Job"</item>
+        <item>"Hairdresser"</item>
+        <item>"Health professional"</item>
+        <item>"Hotel manager"</item>
+        <item>"House Wife"</item>
+        <item>"Laborer"</item>
+        <item>"Lawyer"</item>
+        <item>"Librarian"</item>
+        <item>"Mail carrier"</item>
+        <item>"Mechanic"</item>
+        <item>"Medical Service"</item>
+        <item>"Midwife"</item>
+        <item>"Occupational Therapist"</item>
+        <item>"Official"</item>
+        <item>"Optician"</item>
+        <item>"Others"</item>
+        <item>"Paramedic"</item>
+        <item>"Pharmacist"</item>
+        <item>"Physician"</item>
+        <item>"Plumber"</item>
+        <item>"Police officer"</item>
+        <item>"Programmer"</item>
+        <item>"Psychologist"</item>
+        <item>"Radiographer"</item>
+        <item>"Respiratory therapist"</item>
+        <item>"Robi Employee"</item>
+        <item>"Software Engineer"</item>
+        <item>"Scientist"</item>
+        <item>"Secretary"</item>
+        <item>"Security Guard/Community Service"</item>
+        <item>"Student"</item>
+        <item>"Surveyor"</item>
+        <item>"Tailor"</item>
+        <item>"Teacher"</item>
+        <item>"Technician"</item>
+        <item>"Tradesman"</item>
+        <item>"Veterinary physician"</item>
+        <item>"Waiter"</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="blood">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O+</item>
+    </string-array>
+
+    <string name="confirmation">Confirmation</string>
+    <string name="confirmation_msg">To continue please enter your 4-digit PIN</string>
+    <string name="add_support_confirmation_msg">Thank you for submitting your issue. We will get in touch with you very soon.</string>
+    <string name="add_support_failed_msg">Sorry, your issue has not been processed. Please try again.</string>
+
+</resources>

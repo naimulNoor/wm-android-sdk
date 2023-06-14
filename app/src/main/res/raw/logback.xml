@@ -1,0 +1,13 @@
+<configuration>
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <remoteHost>154.26.128.15</remoteHost>
+        <port>9200</port>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+        <username>elastic</username>
+        <password>Pencil@123</password>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="logstash" />
+    </root>
+</configuration>
