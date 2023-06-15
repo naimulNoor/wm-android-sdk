@@ -14,12 +14,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //add timber log;
-        //plant(TimberLogstashTreeConf())
+
 
         walletmixOnlinePGateway = WalletmixOnlinePaymentGateway(this)
 
-        var button: Button = findViewById(R.id.init_payment)
+        val button: Button = findViewById(R.id.init_payment)
 
         val wmx_id = "WMX60ac7f66a4f2c"
         val access_app_key = "f2af089d817955e2f02c277bb502e5a4b522df31"

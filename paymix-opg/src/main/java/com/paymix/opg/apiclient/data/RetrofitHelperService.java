@@ -31,7 +31,7 @@ import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
+
 
 public class RetrofitHelperService {
 
@@ -79,7 +79,6 @@ public class RetrofitHelperService {
             public void onResponse(@NonNull Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     InitPaymentApiResponse result  = new Gson().fromJson(response.body(),InitPaymentApiResponse.class);
-                    Timber.tag("init-response").d(result.toString());
                     if (result.statusCode.equals("1000")) {
                         initPaymentApiCallListener.onSuccessfullyInitPayment(result.token);
                     } else {
