@@ -1,6 +1,9 @@
 package com.paymix.opg;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,20 +11,26 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
+import com.google.gson.Gson;
 import com.paymix.opg.apiclient.data.APIs;
 import com.paymix.opg.apiclient.data.NetworkUtils;
 import com.paymix.opg.apiclient.data.RetrofitHelperService;
 import com.paymix.opg.apiclient.pref.Keys;
+import com.paymix.opg.apiclient.pref.SessionManager;
 import com.paymix.opg.appInterface.OPGResponseListener;
 import com.paymix.opg.utils.AlertServices;
 import com.wallemix.paymix.opg.R;
 
 import org.jetbrains.annotations.NotNull;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class WalletmixOnlinePaymentGateway {
+public class WalletmixOnlinePaymentGateway  {
 
     private Context context;
     private ProgressDialog PD;
@@ -70,6 +79,7 @@ public class WalletmixOnlinePaymentGateway {
     private String cart_info;
     private String options;
     private String authorization;
+    OPGResponseListener listener;
 
     public WalletmixOnlinePaymentGateway(Context context) {
         this.context = context;
@@ -170,15 +180,16 @@ public class WalletmixOnlinePaymentGateway {
     private void initPayment(String initPaymentUrl, OPGResponseListener oPGResponseListener) {
         Map<String, String> initPaymentParams = getParamsMap();
         retrofitHelperService.initPayment(initPaymentUrl, initPaymentParams, new RetrofitHelperService.InitPaymentApiCallListener() {
+
             @SuppressLint("SuspiciousIndentation")
             @Override
             public void onSuccessfullyInitPayment(String token) {
 
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
-                     oPGResponseListener.onProcessPaymentRequest(initPaymentUrl,initPaymentParams);
+                        oPGResponseListener.onProcessPaymentRequest(initPaymentUrl,initPaymentParams);
                         String cardSelectionPageUrl = bank_payment_url + "/" + token;
-                        Intent cardSelectionIntent = new Intent(context, CardSelectionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent cardSelectionIntent = new Intent(context,CardSelectionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         Bundle dataBundle = new Bundle();
                         dataBundle.putBoolean(Keys.is_live.name(), isLive);
                         dataBundle.putString(Keys.token.name(), token);
@@ -188,12 +199,17 @@ public class WalletmixOnlinePaymentGateway {
                         dataBundle.putString(Keys.access_api_key.name(), access_app_key);
                         dataBundle.putString(Keys.authorization.name(), authorization);
                         dataBundle.putString(Keys.call_back_activity_class_name.name(), callBackActivityClassName);
-                        cardSelectionIntent.putExtra("OPG-LISTENER",oPGResponseListener);
+                        //dataBundle.putSerializable("OPG-LISTENER", oPGResponseListener);
                         cardSelectionIntent.putExtra(Keys.data_bundle.name(), dataBundle);
-
+                        //cardSelectionIntent.putExtra("OPG-LISTENER",oPGResponseListener);
+                        CardSelectionActivity.setUpListener(oPGResponseListener);
                         context.startActivity(cardSelectionIntent);
-
-                Log.d("init-payment-token",token);
+//                        try{
+//
+//                        }catch (Exception exception){
+//                            Log.d("init-payment-token",token);
+//                        oPGResponseListener.onFailed(exception.getMessage());
+//                        }
 //
 //                retrofitHelperService.initToken(context, merchant_order_id, token, new RetrofitHelperService.InitTokenCallListener() {
 //                    @Override
@@ -277,6 +293,8 @@ public class WalletmixOnlinePaymentGateway {
 
         return initPaymentParams;
     }
+
+
 
 
 

@@ -1,25 +1,29 @@
 package com.paymix.myapp
 
 import android.os.Bundle
+import android.os.Parcel
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.paymix.opg.WalletmixOnlinePaymentGateway
 import com.paymix.opg.apiclient.data.reponse.PaymentResponse
 import com.paymix.opg.appInterface.OPGResponseListener
 import com.walletmix.myapp.R
 import timber.log.Timber
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
+
     private var walletmixOnlinePGateway: WalletmixOnlinePaymentGateway? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //add timber log;
-        //plant(TimberLogstashTreeConf())
+
 
         walletmixOnlinePGateway = WalletmixOnlinePaymentGateway(this)
 
-        var button: Button = findViewById(R.id.init_payment)
+        val button: Button = findViewById(R.id.init_payment)
 
         val wmx_id = "WMX60ac7f66a4f2c"
         val access_app_key = "f2af089d817955e2f02c277bb502e5a4b522df31"
@@ -63,14 +67,15 @@ class MainActivity : AppCompatActivity() {
             walletmixOnlinePGateway!!.startTransactions(false, MainActivity::class.java,
                 object : OPGResponseListener {
                     override fun intRequest(sandBox: Boolean, initPaymentUrl: String?) {
-                        Timber.tag("opg-listener").d("init")
-
+                        //Timber.tag("opg-listener").d("init")
+                        Log.d("payment-status",initPaymentUrl!!)
                     }
 
                     override fun onProcessPaymentRequest(
                         initPaymentUrl: String?,
-                        peramiter: Map<String, String>
+                        parameter: Map<String, String>
                     ) {
+                        Log.d("payment-status",parameter.toString())
                         Timber.tag("opg-listener").d("onProcessPaymentRequest")
                     }
 
@@ -78,22 +83,25 @@ class MainActivity : AppCompatActivity() {
                         statusCode: Int,
                         response: PaymentResponse?
                     ) {
-                        Timber.tag("opg-listener")
-                            .d("onSuccessPaymentRequest::" + response!!.requestIp + "::status-code::" + statusCode)
+                        successCall()
+                        Toast.makeText(applicationContext, "onSuccessPaymentRequest", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(applicationContext,"onSuccessPaymentRequest",Toast.LENGTH_SHORT).show()
+                        Log.d("payment-status","onSuccessPaymentRequest::" + response!!.requestIp + "::status-code::" + statusCode)
                     }
 
                     override fun onFailedPaymentRequest(
                         statusCode: Int,
                         response: PaymentResponse?
                     ) {
-                        Timber.tag("opg-listener")
-                            .d("onFailedPaymentRequest::" + response + "::status-code::" + statusCode)
+                        //Toast.makeText(applicationContext,"onFailedPaymentRequest",Toast.LENGTH_SHORT).show()
+                        Timber.tag("opg-listener").d("onFailedPaymentRequest::" + response + "::status-code::" + statusCode)
                     }
 
                     override fun onDeclinedPaymentRequest(
                         statusCode: Int,
                         response: PaymentResponse?
                     ) {
+                        //Toast.makeText(applicationContext,"onDeclinedPaymentRequest",Toast.LENGTH_SHORT).show()
                         Timber.tag("opg-listener")
                             .d("onDeclinedPaymentRequest::" + response + "::status-code::" + statusCode)
                     }
@@ -101,6 +109,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onFailed(message: String?) {
                         Timber.tag("opg-listener").d("onfailed:::" + message)
                     }
+
 
 
                 })
@@ -144,6 +153,10 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
+    }
+
+    private fun successCall() {
+        //Toast.makeText(applicationContext, "onSuccessPaymentRequest", Toast.LENGTH_SHORT).show()
     }
 
 
