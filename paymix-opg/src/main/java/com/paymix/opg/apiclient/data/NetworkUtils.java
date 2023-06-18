@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
-public class NetworkUtils {
+public class NetworkUtils  {
 
     private ConnectivityManager connectivityManager;
 

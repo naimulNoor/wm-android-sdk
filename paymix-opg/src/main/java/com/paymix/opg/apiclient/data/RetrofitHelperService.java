@@ -6,6 +6,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.paymix.opg.apiclient.data.reponse.BaseResponse;
@@ -24,6 +25,7 @@ import com.paymix.opg.apiclient.data.request.InitPaymentApiService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import androidx.annotation.NonNull;
 
@@ -78,11 +80,28 @@ public class RetrofitHelperService {
             @Override
             public void onResponse(@NonNull Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    InitPaymentApiResponse result  = new Gson().fromJson(response.body(),InitPaymentApiResponse.class);
-                    if (result.statusCode.equals("1000")) {
-                        initPaymentApiCallListener.onSuccessfullyInitPayment(result.token);
+                   // InitPaymentApiResponse result  = new Gson().fromJson(response.body(),InitPaymentApiResponse.class);
+                    JsonObject reponse=response.body();
+
+                    if (reponse.get("statusCode").getAsString().equals("1000")) {
+                        initPaymentApiCallListener.onSuccessfullyInitPayment(reponse.get("token").getAsString());
                     } else {
-                        initPaymentApiCallListener.onFailedToInitPayment(result.statusMsg);
+                        //Log.d("startmsg",response.toString());
+                        JsonElement element=reponse.get("statusMsg");
+                        if(element.isJsonObject()){
+                            JsonObject obj=element.getAsJsonObject();
+                            JsonArray message= null;
+                            for (String data : obj.keySet())
+                            {
+                                message=obj.get(data).getAsJsonArray();
+                                break;
+                            }
+
+                            initPaymentApiCallListener.onFailedToInitPayment(message.get(0).toString().replace("\"",""));
+                        }else{
+                            initPaymentApiCallListener.onFailedToInitPayment(reponse.get("statusMsg").getAsString());
+                        }
+
                     }
                 }else{
                     BaseResponse data  = new Gson().fromJson(response.errorBody().charStream(),BaseResponse.class);

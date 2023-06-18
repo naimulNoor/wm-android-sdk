@@ -11,10 +11,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-
-
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.paymix.opg.apiclient.data.APIs;
 import com.paymix.opg.apiclient.data.RetrofitHelperService;
 import com.paymix.opg.apiclient.data.reponse.PaymentResponse;
@@ -22,14 +19,10 @@ import com.paymix.opg.apiclient.pref.Keys;
 import com.paymix.opg.appInterface.OPGResponseListener;
 import com.paymix.opg.utils.AlertServices;
 import com.wallemix.paymix.opg.R;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,12 +34,15 @@ public class CardSelectionActivity extends AppCompatActivity {
     final int WEB_VIEW_ID = 123;
     RetrofitHelperService retrofitHelperService;
 
-    OPGResponseListener callback;
+    static OPGResponseListener callback;
+
+
+    public static void setUpListener(OPGResponseListener Listener) {
+        callback = Listener;
+    }
 
 
 
-
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +57,9 @@ public class CardSelectionActivity extends AppCompatActivity {
             authorization = dataBundle.getString(Keys.authorization.name());
             callBackActivityClassName = dataBundle.getString(Keys.call_back_activity_class_name.name());
             isLive = dataBundle.getBoolean(Keys.is_live.name());
-            callback= (OPGResponseListener) getIntent().getSerializableExtra("OPG-LISTENER");
+
+            //callback= (OPGResponseListener) dataBundle.getParcelable("OPG-LISTENER");
+            callback.onFailed("failed");
 
         }
 
@@ -142,6 +140,7 @@ public class CardSelectionActivity extends AppCompatActivity {
                                 case 1009:callback.onFailedPaymentRequest(Integer.parseInt(status),paymentResponse);break;
                                 default: callback.onFailed("Payment Request Failed");
                             }
+
                             finish();
                         }  catch (JSONException e) {
                             throw new RuntimeException(e);
