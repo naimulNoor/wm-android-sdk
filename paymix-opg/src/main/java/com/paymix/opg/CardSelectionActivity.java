@@ -59,7 +59,6 @@ public class CardSelectionActivity extends AppCompatActivity {
             isLive = dataBundle.getBoolean(Keys.is_live.name());
 
             //callback= (OPGResponseListener) dataBundle.getParcelable("OPG-LISTENER");
-            callback.onFailed("failed");
 
         }
 

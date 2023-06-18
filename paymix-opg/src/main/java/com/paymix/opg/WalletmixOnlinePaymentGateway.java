@@ -27,8 +27,6 @@ import com.paymix.opg.utils.AlertServices;
 import com.wallemix.paymix.opg.R;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -182,6 +180,7 @@ public class WalletmixOnlinePaymentGateway  {
     private void initPayment(String initPaymentUrl, OPGResponseListener oPGResponseListener) {
         Map<String, String> initPaymentParams = getParamsMap();
         retrofitHelperService.initPayment(initPaymentUrl, initPaymentParams, new RetrofitHelperService.InitPaymentApiCallListener() {
+
             @SuppressLint("SuspiciousIndentation")
             @Override
             public void onSuccessfullyInitPayment(String token) {
@@ -190,8 +189,6 @@ public class WalletmixOnlinePaymentGateway  {
                     progressDialog.dismiss();
                         oPGResponseListener.onProcessPaymentRequest(initPaymentUrl,initPaymentParams);
                         String cardSelectionPageUrl = bank_payment_url + "/" + token;
-                        CardSelectionActivity activity=new CardSelectionActivity();
-                        activity.callback=oPGResponseListener;
                         Intent cardSelectionIntent = new Intent(context,CardSelectionActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         Bundle dataBundle = new Bundle();
                         dataBundle.putBoolean(Keys.is_live.name(), isLive);
@@ -213,10 +210,6 @@ public class WalletmixOnlinePaymentGateway  {
 //                            Log.d("init-payment-token",token);
 //                        oPGResponseListener.onFailed(exception.getMessage());
 //                        }
-
-
-
-
 //
 //                retrofitHelperService.initToken(context, merchant_order_id, token, new RetrofitHelperService.InitTokenCallListener() {
 //                    @Override

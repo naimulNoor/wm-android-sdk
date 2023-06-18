@@ -14,6 +14,7 @@ import timber.log.Timber
 import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
+
     private var walletmixOnlinePGateway: WalletmixOnlinePaymentGateway? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,8 +94,7 @@ class MainActivity : AppCompatActivity() {
                         response: PaymentResponse?
                     ) {
                         //Toast.makeText(applicationContext,"onFailedPaymentRequest",Toast.LENGTH_SHORT).show()
-                        Timber.tag("opg-listener")
-                            .d("onFailedPaymentRequest::" + response + "::status-code::" + statusCode)
+                        Timber.tag("opg-listener").d("onFailedPaymentRequest::" + response + "::status-code::" + statusCode)
                     }
 
                     override fun onDeclinedPaymentRequest(

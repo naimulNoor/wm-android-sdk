@@ -78,29 +78,30 @@ public class RetrofitHelperService {
         Call<JsonObject> initPaymentApiCall = initPaymentApiService.initPayment(initPaymentUrl, params);
         initPaymentApiCall.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(@NonNull Call<JsonObject> call, Response<JsonObject> response) {
+            public void onResponse(@NonNull Call<JsonObject> call, @NonNull Response<JsonObject> response) {
                 if (response.isSuccessful() && response.body() != null) {
                    // InitPaymentApiResponse result  = new Gson().fromJson(response.body(),InitPaymentApiResponse.class);
                     JsonObject reponse=response.body();
-
+                 //   Log.d("initresponse",reponse.get("statusCode").getAsString());
                     if (reponse.get("statusCode").getAsString().equals("1000")) {
-                        initPaymentApiCallListener.onSuccessfullyInitPayment(reponse.get("token").getAsString());
+                     initPaymentApiCallListener.onSuccessfullyInitPayment(reponse.get("token").getAsString());
+                     //initPaymentApiCallListener.onSuccessfullyInitPayment("token");
                     } else {
-                        //Log.d("startmsg",response.toString());
-                        JsonElement element=reponse.get("statusMsg");
-                        if(element.isJsonObject()){
-                            JsonObject obj=element.getAsJsonObject();
-                            JsonArray message= null;
-                            for (String data : obj.keySet())
-                            {
-                                message=obj.get(data).getAsJsonArray();
-                                break;
-                            }
-
-                            initPaymentApiCallListener.onFailedToInitPayment(message.get(0).toString().replace("\"",""));
-                        }else{
-                            initPaymentApiCallListener.onFailedToInitPayment(reponse.get("statusMsg").getAsString());
-                        }
+//                        //Log.d("startmsg",response.toString());
+//                        JsonElement element=reponse.get("statusMsg");
+//                        if(element.isJsonObject()){
+//                            JsonObject obj=element.getAsJsonObject();
+//                            JsonArray message= null;
+//                            for (String data : obj.keySet())
+//                            {
+//                                message=obj.get(data).getAsJsonArray();
+//                                break;
+//                            }
+//
+//                            initPaymentApiCallListener.onFailedToInitPayment(message.get(0).toString().replace("\"",""));
+//                        }else{
+//                            initPaymentApiCallListener.onFailedToInitPayment(reponse.get("statusMsg").getAsString());
+//                        }
 
                     }
                 }else{
