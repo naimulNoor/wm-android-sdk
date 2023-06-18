@@ -87,21 +87,21 @@ public class RetrofitHelperService {
                      initPaymentApiCallListener.onSuccessfullyInitPayment(reponse.get("token").getAsString());
                      //initPaymentApiCallListener.onSuccessfullyInitPayment("token");
                     } else {
-//                        //Log.d("startmsg",response.toString());
-//                        JsonElement element=reponse.get("statusMsg");
-//                        if(element.isJsonObject()){
-//                            JsonObject obj=element.getAsJsonObject();
-//                            JsonArray message= null;
-//                            for (String data : obj.keySet())
-//                            {
-//                                message=obj.get(data).getAsJsonArray();
-//                                break;
-//                            }
-//
-//                            initPaymentApiCallListener.onFailedToInitPayment(message.get(0).toString().replace("\"",""));
-//                        }else{
-//                            initPaymentApiCallListener.onFailedToInitPayment(reponse.get("statusMsg").getAsString());
-//                        }
+                        //Log.d("startmsg",response.toString());
+                        JsonElement element=reponse.get("statusMsg");
+                        if(element.isJsonObject()){
+                            JsonObject obj=element.getAsJsonObject();
+                            JsonArray message= null;
+                            for (String data : obj.keySet())
+                            {
+                                message=obj.get(data).getAsJsonArray();
+                                break;
+                            }
+
+                            initPaymentApiCallListener.onFailedToInitPayment(message.get(0).toString().replace("\"",""));
+                        }else{
+                            initPaymentApiCallListener.onFailedToInitPayment(reponse.get("statusMsg").getAsString());
+                        }
 
                     }
                 }else{
